@@ -3,14 +3,11 @@ name: Slack Notification Test
 on:
   workflow_dispatch:
 
-env:
-  SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-
 jobs:
   send_review:
     uses: ./.github/workflows/slack-alert.yml
     with:
-      webhook: ${{ env.SLACK_WEBHOOK }}
+      webhook: ${{ secrets.SLACK_WEBHOOK }}
       reviewer: "Danny Torrence"
       property_name: "Overlook Hotel"
       rating: "1.0"
