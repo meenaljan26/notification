@@ -9,10 +9,9 @@ on:
 jobs:
   send_review:
     uses: ./.github/workflows/slack-alert.yml
-    webhook-url: ${{ secrets.SLACK_WEBHOOK }}
     with:
+      webhook-url: ${{ secrets.SLACK_WEBHOOK }}
       reviewer: "Danny Torrence"
       property_name: "Overlook Hotel"
       rating: "1.0"
       review_text: "Doors had too many axe holes, guest in room 237 was far too rowdy, whole place felt stuck in the 1920s."
-
