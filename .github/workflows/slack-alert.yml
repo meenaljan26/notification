@@ -1,8 +1,11 @@
-name: Reusable Slack Notification
+name: Slack Alert
 
 on:
   workflow_call:
     inputs:
+      webhook-url:
+        required: true
+        type: secret
       reviewer:
         required: true
         type: string
@@ -15,52 +18,16 @@ on:
       review_text:
         required: true
         type: string
-      webhook_secret:
-        required: false
-        type: string
-        default: SLACK_WEBHOOK
 
 jobs:
   send_slack:
     runs-on: ubuntu-latest
     steps:
-      - name: Send Slack Review Message
+      - name: Send Slack message
         uses: slackapi/slack-github-action@v2.1.1
         with:
-          webhook: ${{ secrets[inputs.webhook_secret] }}
-          webhook-type: incoming-webhook
-          payload: |
-            {
-              "text": "${{ inputs.reviewer }} left a ${{ inputs.rating }}-star review for your property.",
-              "blocks": [
-                {
-                  "type": "section",
-                  "text": {
-                    "type": "mrkdwn",
-                    "text": "*${{ inputs.reviewer }}* left the following review for your property:"
-                  }
-                },
-                {
-                  "type": "section",
-                  "text": {
-                    "type": "mrkdwn",
-                    "text": "<https://example.com|*${{ inputs.property_name }}*> :star: \n${{ inputs.review_text }}"
-                  },
-                  "accessory": {
-                    "type": "image",
-                    "image_url": "https://is5-ssl.mzstatic.com/image/thumb/Purple3/v4/d3/72/5c/d3725c8f-c642-5d69-1904-aa36e4297885/source/256x256bb.jpg",
-                    "alt_text": "Property image"
-                  }
-                },
-                {
-                  "type": "section",
-                  "fields": [
-                    {
-                      "type": "mrkdwn",
-                      "text": "*Average Rating*: ${{ inputs.rating }}"
-                    }
-                  ]
-                }
-              ]
-            }
-
+          webhook-url: ${{ inputs.webhook-url }}
+          text: |
+            Review by ${{ inputs.reviewer }} for ${{ inputs.property_name }}:
+            Rating: ${{ inputs.rating }}
+            Comments: ${{ inputs.review_text }}
