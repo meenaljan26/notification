@@ -5,7 +5,7 @@ on:
     inputs:
       webhook-url:
         required: true
-        type: secret
+        type: string
       reviewer:
         required: true
         type: string
