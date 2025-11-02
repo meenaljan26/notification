@@ -16,7 +16,7 @@ jobs:
           ${{ secrets.SLACK_WEBHOOK }}
 
 
-      -  name:  Write the review
+      -  name: Write the review
          uses: slackapi/slack-github-action@v2.1.1
          with:
            webhook: ${{ secrets.SLACK_WEBHOOK }}
@@ -40,4 +40,4 @@ jobs:
                 fields:
                   - type: "mrkdwn"
                     text: "*Average Rating*: 1.0"
-                    text: "*Average Rating*: 1.0"  
+                    
