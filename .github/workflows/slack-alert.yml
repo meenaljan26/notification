@@ -28,4 +28,7 @@ jobs:
         with:
           webhook: ${{ inputs.webhook }}
           webhook-type: incoming-webhook
-
+          payload: |
+            {
+              "text": "*Review by* ${{ inputs.reviewer }} *for* ${{ inputs.property_name }}:\n*Rating:* ${{ inputs.rating }}\n*Comments:* ${{ inputs.review_text }}"
+            }
