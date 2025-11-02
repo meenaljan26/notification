@@ -8,10 +8,13 @@ on:
 
 jobs:
   send_review:
-    uses: ./.github/workflows/slack-alert.yml
-    with:
-      webhook-url: ${{ secrets.SLACK_WEBHOOK }}
-      reviewer: "Danny Torrence"
-      property_name: "Overlook Hotel"
-      rating: "1.0"
-      review_text: "Doors had too many axe holes, guest in room 237 was far too rowdy, whole place felt stuck in the 1920s."
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Slack message
+        uses: slackapi/slack-github-action@v2.1.1
+        with:
+          webhook-url: ${{ secrets.SLACK_WEBHOOK }}
+          text: |
+            Review by Danny Torrence for Overlook Hotel:
+            Rating: 1.0
+            Comments: Doors had too many axe holes, guest in room 237 was far too rowdy, whole place felt stuck in the 1920s.
