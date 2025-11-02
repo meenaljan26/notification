@@ -19,7 +19,7 @@ jobs:
       -  name:  Write the review
          uses: slackapi/slack-github-action@v2.1.1
          with:
-           webhook: ${{ secrets.SLACK_WEBHOOK_URL }}
+           webhook: ${{ secrets.SLACK_WEBHOOK }}
            webhook-type: incoming-webhook
            payload: |
              text: "Danny Torrence left a 1-star review for your property."
