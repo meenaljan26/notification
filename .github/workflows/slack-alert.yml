@@ -3,7 +3,7 @@ name: Slack Alert
 on:
   workflow_call:
     inputs:
-      webhook-url:
+      webhook:
         required: true
         type: string
       reviewer:
@@ -26,8 +26,6 @@ jobs:
       - name: Send Slack message
         uses: slackapi/slack-github-action@v2.1.1
         with:
-          webhook-url: ${{ inputs.webhook-url }}
-          text: |
-            Review by ${{ inputs.reviewer }} for ${{ inputs.property_name }}:
-            Rating: ${{ inputs.rating }}
-            Comments: ${{ inputs.review_text }}
+          webhook: ${{ inputs.webhook }}
+          webhook-type: incoming-webhook
+
