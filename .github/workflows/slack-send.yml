@@ -1,21 +1,14 @@
 name: Slack Notification Test
 
 on:
-  push:
-    branches:
-      - main
   workflow_dispatch:
 
 jobs:
   send_review:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Send Slack message
-        uses: slackapi/slack-github-action@v2.1.1
-        with:
-          webhook: ${{ secrets.SLACK_WEBHOOK }}
-          webhook-type: incoming-webhook
-          payload: |
-            {
-              "text": "Review by Danny Torrence for Overlook Hotel:\nRating: 1.0\nComments: Doors had too many axe holes, guest in room 237 was far too rowdy, whole place felt stuck in the 1920s."
-            }
+    uses: ./.github/workflows/slack-alert.yml
+    with:
+      webhook: ${{ secrets.SLACK_WEBHOOK }}
+      reviewer: "Danny Torrence"
+      property_name: "Overlook Hotel"
+      rating: "1.0"
+      review_text: "Doors had too many axe holes, guest in room 237 was far too rowdy, whole place felt stuck in the 1920s."
