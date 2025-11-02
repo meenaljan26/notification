@@ -16,20 +16,10 @@ jobs:
           ${{ secrets.SLACK_WEBHOOK }}
 
 
-name: Post an inline block message
-on:
-  push:
-    branches:
-      - main
-jobs:
-  run:
-    name: Share a travel review to channel
-    runs-on: ubuntu-latest
-    steps:
-      - name: Write the review
+     -  name:  Write the review
         uses: slackapi/slack-github-action@v2.1.1
         with:
-          webhook: ${{ secrets.SLACK_WEBHOOK }}
+          webhook: ${{ secrets.SLACK_WEBHOOK_URL }}
           webhook-type: incoming-webhook
           payload: |
             text: "Danny Torrence left a 1-star review for your property."
@@ -49,4 +39,5 @@ jobs:
               - type: "section"
                 fields:
                   - type: "mrkdwn"
+                    text: "*Average Rating*: 1.0"
                     text: "*Average Rating*: 1.0"  
