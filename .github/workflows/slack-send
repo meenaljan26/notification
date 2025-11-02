@@ -3,6 +3,7 @@ name: Slack Notification Test
 on:
   push:
     branches:
+  workflow_dispatch:
       - main
 
 jobs:
