@@ -9,10 +9,8 @@ on:
 jobs:
   send_review:
     uses: ./.github/workflows/slack-alert.yml
-    env:
-      SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
     with:
-      webhook-url: ${{ env.SLACK_WEBHOOK }}
+      webhook-url: ${{ secrets.SLACK_WEBHOOK }}
       reviewer: "Danny Torrence"
       property_name: "Overlook Hotel"
       rating: "1.0"
