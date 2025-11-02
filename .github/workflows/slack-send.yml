@@ -8,7 +8,7 @@ on:
 
 jobs:
   send_review:
-    uses: ./.github/workflows/slack-notification.yml
+    uses: ./.github/workflows/slack-alert.yml
     with:
       reviewer: "Danny Torrence"
       property_name: "Overlook Hotel"
