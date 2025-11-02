@@ -3,12 +3,15 @@ name: Slack Notification Test
 on:
   workflow_dispatch:
 
+env:
+  SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+
 jobs:
   send_review:
     uses: ./.github/workflows/slack-alert.yml
     with:
-      webhook: ${{ secrets.SLACK_WEBHOOK }}
+      webhook: ${{ env.SLACK_WEBHOOK }}
       reviewer: "Danny Torrence"
       property_name: "Overlook Hotel"
       rating: "1.0"
-      review_text: "Doors had too many axe holes, guest in room 237 was far too rowdy, whole place felt stuck in the 1920s."
+      review_text: "Doors had too many axe holes, guest in room 237 was far too rowdy, whole place felt stuck in the 1920_
