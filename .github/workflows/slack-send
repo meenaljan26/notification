@@ -3,7 +3,7 @@ name: Reusable Slack Notification
 on:
   workflow_call:
     inputs:
-      message:
+      payload:
         required: true
         type: string
 
@@ -16,4 +16,4 @@ jobs:
         with:
           webhook: ${{ secrets.SLACK_WEBHOOK }}
           webhook-type: incoming-webhook
-          payload: '{"text": "${{ inputs.message }}"}'
+          payload: ${{ inputs.payload }}
