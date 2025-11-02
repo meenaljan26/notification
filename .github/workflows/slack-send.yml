@@ -7,8 +7,10 @@ jobs:
   send_review:
     uses: ./.github/workflows/slack-alert.yml
     with:
-      webhook: ${{ secrets.SLACK_WEBHOOK }}
+      webhook: ${{ github.event.inputs.SLACK_WEBHOOK }}  # placeholder if input is used
       reviewer: "Danny Torrence"
       property_name: "Overlook Hotel"
       rating: "1.0"
       review_text: "Doors had too many axe holes, guest in room 237 was far too rowdy, whole place felt stuck in the 1920s."
+    env:
+      SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
