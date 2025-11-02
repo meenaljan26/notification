@@ -9,6 +9,7 @@ on:
 jobs:
   send_review:
     uses: ./.github/workflows/slack-alert.yml
+    webhook-url: ${{ secrets.SLACK_WEBHOOK }}
     with:
       reviewer: "Danny Torrence"
       property_name: "Overlook Hotel"
